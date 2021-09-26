@@ -43,13 +43,13 @@ ll power(ll x,  ll y)
       dp[1] = 1; 
       for(int i = 2; i <= n ;i ++){
             int maxed = 0;
-            int cc = sqrt(i); 
-          for(int j = 1 ; j <=cc; j ++){
+            // int cc = sqrt(i); 
+          for(int j = 1 ; j <=sqrt(i); j ++){
             
               if(i%j==0){
-                  if(i == 6){
-                      cout<<j<<" "; 
-                  }
+                //   if(i == 6){a
+                    //   cout<<j<<" "; 
+                //   }
                   if(arr[i]>arr[j]){
                      maxed = max(maxed,dp[j]) ; 
                   } 

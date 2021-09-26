@@ -1,48 +1,39 @@
-#include<bits/stdc++.h>
+#include<iostream>
 using namespace std; 
-typedef long long int ll; 
-vector<ll>primes;
-vector<int>Graph[2005]; 
-bool visited[2005]; 
-long long int mod = 1000000007;
-void SieveOfEratosthenes(ll n)
-{
-    bool prime[n + 1];
-    memset(prime, true, sizeof(prime));
- 
-    for (ll p = 2; p * p <= n; p++)
-    {
-        if (prime[p] == true) 
-        {
-            for (ll i = p * p; i <= n; i += p)
-                prime[i] = false;
-        }
+int main(){
+    cout<<"Enter the value of first number\n";
+    int a; 
+    cin>>a; 
+    cout<<"Enter the value of second number\n";
+    int b; 
+    cin>>b; 
+    cout<<"1.Addition Operation\n 2. Subtraction\n 3. Multiplication\n 4. Division \n 5. Modulo Operation"; 
+    int choice; 
+    cin>>choice; 
+    switch(choice){
+        case 1:
+          cout<<"Addition of the 2 numbers is\n";
+          cout<<a+b; 
+          break; 
+        case 2:
+          cout<<"Subtraction of the 2 numbers is\n";
+          cout<<a-b; 
+          break; 
+        case 3:
+          cout<<"Multiplication of the 2 numbers is\n";
+          cout<<a*b; 
+          break; 
+        case 4:
+          cout<<"Division of the 2 numbers is\n";
+          cout<<(double)a/b; 
+          break; 
+        case 5: 
+        cout<<"Enter value of Quotient\n"; 
+         int c; 
+         cin>>c; 
+         cout<<a%c; 
+         break; 
+         default:
+         cout<<"Wrong choice\n";
     }
-
-    for (ll p = 2; p <= n; p++)
-        if (prime[p])
-        primes.push_back(p); 
 }
-ll power(ll x,  ll y)
-{
-    if (y == 0)
-        return 1;
-    else if (y % 2 == 0)
-        return ((power(x, y / 2)%mod) * (power(x, y / 2)%mod))%mod;
-    else
-        return ((((x  %mod) * ((power(x, y / 2)%mod)))%mod * (power(x, y / 2)%mod))%mod)%mod;
-}
- void solve(){
-     
- }
- int main()
- {
-
-     int t = 1; 
-     scanf("%d",&t); 
-        
-         while(t--){
-             solve(); 
-            cout<<"\n"; 
-         }
- }

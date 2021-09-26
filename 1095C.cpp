@@ -33,38 +33,68 @@ ll power(ll x,  ll y)
         return ((((x  %mod) * ((power(x, y / 2)%mod)))%mod * (power(x, y / 2)%mod))%mod)%mod;
 }
  void solve(){
-      ll n; 
-      cin>>n; 
-      ll arr[n];
-      ll brr[n];  
-      for(int i=0;i<n;i++)
-      cin>>arr[i]; 
-     for(int i=0;i<n;i++)
-      cin>>brr[i]; 
-      vector<pair<ll,ll>>v; 
-      for(int i = 0 ;i <n ; i ++ ){
-          v.push_back(make_pair(arr[i],brr[i])); 
+      int n,k; 
+      cin>>n>>k; 
+      ll c = n; 
+      int low =0; 
+      while(c!=0){
+          int g = c & 1; 
+          if(g == 1){
+              low++; 
+          }
+          c = c / 2; 
       }
-       sort(v.begin(),v.end(),greater<pair<ll,ll>>()); 
-        // for(int i = 0 ;i <n ; i ++ ){
-        //     cout<<v[i].first <<" "<<v[i].second<<"\n"; 
-        // }
-       ll sum = 0;
-       ll ans = 1e18; 
-      for(int i = 0 ; i < n ; i ++){
-          ans = min(ans,max(v[i].first, sum )); 
-        //   cout<<ans<<"\n"; 
-          sum+=v[i].second; 
+      if(k >= low && k <= n){
+          cout<<"YES\n"; 
+          queue<int>q; 
+          int ones = 0 ;
+          int c = 1; 
+          while(n!=0){
+              int gg = n & 1; 
+              if(gg == 1){
+                  q.push(c); 
+              }
+              c = c * 2; 
+              n = n / 2; 
+             
+          }
+          int ans = low; 
+           while(!q.empty()){
+               int g = q.front(); 
+
+               if(ans + ones == k){
+                   break; 
+               }
+                if(g!=1){
+                    int cc = g/2; 
+                    q.push(cc); 
+                      q.push(cc); 
+                      q.pop(); 
+                  ans++; 
+                }
+                else{
+                     q.pop(); 
+                     q.push(1);
+                }
+                
+              }
+              while(!q.empty()){
+                  cout<<q.front()<<" "; 
+                  q.pop(); 
+              }
+
+      } 
+      else{
+          cout<<"NO"; 
+          return; 
       }
-   ans = min(ans,sum); 
-    cout<<ans; 
      
  }
  int main()
  {
 
      int t = 1; 
-     scanf("%d",&t); 
+    //  scanf("%d",&t); 
         
          while(t--){
              solve(); 
