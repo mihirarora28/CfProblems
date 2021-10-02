@@ -39,14 +39,29 @@ bool sortbysecdesc(const pair<int,pair<int,int>> &a,
 }
  
  void solve(){
-   ll n; 
-   cin>>n; 
-   ll f = 1; 
-   for(ll i  = 3; i  <=2*n; i ++ ){
-     f = ((f%mod)*(i%mod))%mod;
-   }
-   cout<<f;
-}
+     ll n; 
+     cin>>n; 
+     ll sum = 1; 
+     ll dp[64]; 
+     dp[0] = 1; 
+     for(int i = 2; i <= 64; i ++ ){
+         dp[i-1] = sum + i; 
+         sum = sum + dp[i-1]; 
+     }
+    //  for(int i =0; i <= 63; i ++ )
+    //  cout<<dp[i]<<" ";
+    ll ctr = 0;
+    ll ans =0 ;
+    while(n!=0){
+        // int c = n<<ctr; 
+        int c1 = n&1;
+        if(c1==1)
+        ans+=dp[ctr]; 
+        ctr++; 
+        n = n  / 2; 
+    }
+    cout<<ans;
+ }
  int main()
  {
 

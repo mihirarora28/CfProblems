@@ -39,14 +39,26 @@ bool sortbysecdesc(const pair<int,pair<int,int>> &a,
 }
  
  void solve(){
-   ll n; 
-   cin>>n; 
-   ll f = 1; 
-   for(ll i  = 3; i  <=2*n; i ++ ){
-     f = ((f%mod)*(i%mod))%mod;
-   }
-   cout<<f;
-}
+     ll n; 
+     cin>>n; 
+     ll arr[n]; 
+     ll sum = 0 ;
+     for(int  i = 0 ; i < n; i ++ )
+     {
+     cin>>arr[i]; 
+     sum+=arr[i]; 
+     }
+     ll maxed = *max_element(arr,arr+n); 
+
+     int c = ceil((double)sum/(n-1));
+     if(maxed > c){
+         cout<<maxed*(n-1) - sum; 
+     }
+     else{
+         cout<<(c*(n-1))  - sum ; 
+     }
+
+ }
  int main()
  {
 
