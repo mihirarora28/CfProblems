@@ -39,31 +39,67 @@ bool sortbysecdesc(const pair<int,pair<int,int>> &a,
 }
  
  void solve(){
-     ll n; 
-     cin>>n; 
-     ll arr[n]; 
-     ll sum = 0 ;
-     for(int  i = 0 ; i < n; i ++ )
-     {
+     int n,m; 
+     cin>>n>>m; 
+     int arr[n]; 
+     int arr1[m]; 
+     for(int i = 0 ; i < n ; i ++ )
      cin>>arr[i]; 
-     sum+=arr[i]; 
+     for(int i = 0 ; i < m ; i ++ )
+     cin>>arr1[i]; 
+     int mat[n][m]; 
+     memset(mat,-1,sizeof(mat)); 
+     for(int i = 0 ; i < n; i ++ ){
+         int aa = arr[i]; 
+         for(int j = 0 ; j < m; j ++){
+            //  if(mat[i][j] == 0){
+            //      cout<<0;    
+            //      return; 
+            //  }
+             if(mat[i][j]!=-1)
+             continue; 
+             if(aa == -1)
+             continue; 
+             mat[i][j] = aa; 
+             aa--; 
+         }
      }
-     ll maxed = *max_element(arr,arr+n); 
-
-     int c = ceil((double)sum/(n-1));
-     if(maxed > c){
-         cout<<maxed*(n-1) - sum; 
+     ///
+    
+       for(int i = 0 ; i < m; i ++ ){
+         int aa = arr1[i]; 
+         for(int j = 0 ; j < n; j ++){
+             if((mat[j][i] == 0 && aa > 0) || (mat[j][i] > 0 && aa == 0)) {
+                 cout<<0;
+                //  cout<<i<<" "<<j<<"\n"; 
+                //  cout<<"n" ;
+                 return; 
+             }
+             if(aa == -1)
+             continue; 
+           
+             mat[j][i] = aa; 
+             aa--; 
+         }
      }
-     else{
-         cout<<(c*(n-1))  - sum ; 
+     ll p = 0; 
+           for(int i = 0 ; i < n; i ++ ){
+         for(int j = 0 ; j < m; j++){
+            //  cout<<mat[i][j]<<" "; 
+          if(mat[i][j] == -1)
+          p++; 
+                     }
+                    //  cout<<"\n"; 
+                    
      }
-
+     cout<<power(2,p);
+   
  }
  int main()
  {
 
      int t = 1; 
-      scanf("%d",&t); 
+    //   scanf("%d",&t); 
         
          while(t--){
              solve(); 
