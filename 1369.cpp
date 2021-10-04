@@ -55,13 +55,12 @@ sort(fr,fr+m);
  ll ans = 0 ;
  while(ff<m){
      ans+=arr[dec]; 
-      if(fr[ff] == 1)
+    if(fr[ff] == 1)
      ans+=arr[dec]; 
      dec--; 
      if(fr[ff]-2>=0)
      ans+=arr[inc]; 
      inc+=fr[ff]-1;
-    
      ff++; 
     //  cout<<ans<<"\n";
  }

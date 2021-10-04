@@ -39,7 +39,47 @@ bool sortbysecdesc(const pair<int,pair<int,int>> &a,
 }
  
  void solve(){ 
-     
+     map<string,int>mapp;
+     int n; 
+     cin>>n; 
+     vector<string>v; 
+     vector<string>s1; 
+     int ctr  = 0 ;
+     for(int  i = 0 ; i < n; i ++)
+     {
+         string ss; 
+         cin>>ss; 
+         s1.push_back(ss);
+         
+     mapp[ss] ++; 
+     }
+     for(int  i = 0; i < n; i ++ )
+     {
+         string s = s1[i]; 
+         if(mapp[s] > 1){
+             ctr++; 
+             char ccc = '0'; 
+             for(int i = 0; i <= 9; i ++ ){
+                 char ccc1 = (char)(ccc + i); 
+                 string c = s.substr(0,3);
+                 c = c + ccc1; 
+                 if(mapp[c] == 0){
+                     mapp[c]++;
+                     v.push_back(c);
+                     break; 
+                 }
+             }
+             mapp[s]--; 
+
+         }
+         else{
+             v.push_back(s); 
+         }
+     }
+     cout<<ctr<<"\n"; 
+     for(auto i :v){
+         cout<<i<<"\n"; 
+     }
 }
  int main()
  {

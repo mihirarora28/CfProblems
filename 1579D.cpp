@@ -39,13 +39,41 @@ bool sortbysecdesc(const pair<int,pair<int,int>> &a,
 }
  
  void solve(){ 
-     
+     int n; 
+     cin>>n; 
+     int arr[n]; 
+     priority_queue<pair<int,int>>pq; 
+     for(int i = 0 ; i < n ; i ++ ){
+         cin>>arr[i]; 
+         if(arr[i]>0)
+         pq.push({arr[i],i});
+     }
+     vector<pair<int,int>>v;
+     while(pq.size() > 1){
+         pair<int,int>p1 = pq.top(); 
+         pq.pop(); 
+           pair<int,int>p2 = pq.top(); 
+         pq.pop(); 
+         p1.first = p1.first - 1; 
+         p2.first = p2.first - 1; 
+        //  cout<<p1.second<<" "<<p2.second<<"\n";
+        v.push_back({p1.second+1,p2.second+1});  
+         if(p1.first>0)
+         pq.push(p1); 
+         if(p2.first>0)
+         pq.push(p2); 
+     }
+     cout<<v.size()<<"\n";
+     for(auto i : v){
+         cout<<i.first<<" "<<i.second<<"\n"; 
+     } 
 }
  int main()
  {
-
+     cin.tie(NULL);
      int t = 1; 
       scanf("%d",&t); 
+
         
          while(t--){
              solve(); 
